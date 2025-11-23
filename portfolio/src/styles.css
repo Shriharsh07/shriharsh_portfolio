@@ -263,3 +263,65 @@ html, body, #root {
   color: var(--fg);
   text-decoration: underline;
 }
+
+/* Full project list layout */
+.project-full-list {
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+  margin-top: 20px;
+}
+
+/* Each project boxed cleanly */
+.project-box {
+  background: #000;
+  border: 1px solid var(--border-strong);
+  padding: 22px;
+  border-radius: 6px;
+  color: var(--fg);
+}
+
+/* Project title */
+.project-title {
+  margin: 0 0 10px 0;
+  font-size: 1.4rem;
+}
+
+/* Summary text */
+.project-summary {
+  color: var(--muted);
+  margin-bottom: 14px;
+}
+
+/* Subheadings */
+.project-subheading {
+  margin: 18px 0 6px 0;
+  font-size: 1.1rem;
+}
+
+/* Responsibilities list */
+.project-list {
+  margin: 0;
+  padding-left: 22px;
+  list-style-type: disc; /* Proper bullet points */
+}
+
+.project-list li {
+  margin: 5px 0;
+  line-height: 1.45;
+}
+
+/* Tech chips */
+.tech-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.chip {
+  padding: 6px 10px;
+  border: 1px solid var(--border-strong);
+  border-radius: 4px;
+  display: inline-block;
+}

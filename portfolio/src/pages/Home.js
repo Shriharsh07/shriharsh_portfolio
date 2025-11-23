@@ -21,6 +21,10 @@ export const Skills = [
   "MongoDB",
 ];
 
+const headline = `Enthusiastic Software Engineer with a strong foundation in programming 
+                  and a mindset for continuous growth. I enjoy building practical solutions, 
+                  learning new technologies, and pushing myself beyond comfort zones. `
+
 export default function Home() {
   const { index, subIndex, blinking } = useTyping(INFO_LINES);
 
@@ -41,18 +45,12 @@ export default function Home() {
             <span className={blinking ? "cursor blink" : "cursor"}>|</span>
           </div>
         )}
-
-        {index === INFO_LINES.length && (
-          <div className="final-note">
-            I build serverless systems, migrations & reporting engines.
-          </div>
-        )}
       </div>
 
       <div className="section about">
         <h3>$ about_me</h3>
         <p>
-          I love backend engineering, serverless systems and cloud automation.
+          {headline}
         </p>
       </div>
 

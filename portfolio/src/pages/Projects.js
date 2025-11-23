@@ -4,68 +4,88 @@ const PROJECTS = [
   {
     id: "p1",
     title: "Real-Time WebSocket Notification System",
-    desc: "Serverless WebSocket infra using Go + AWS API Gateway + DynamoDB.",
-    details:
-      "Managed connection lifecycle with TTL-based connection storage, auto-reconnect patterns and cost-optimized lambdas.",
-    tech: ["Go", "API Gateway", "DynamoDB", "Lambda"],
+    summary:
+      "A real-time serverless WebSocket messaging system enabling instant bidirectional communication with scalable connection management.",
+    responsibilities: [
+      "Led development of a real-time WebSocket notification system using Go and AWS Lambda.",
+      "Implemented bidirectional communication for instant delivery and user-targeted notifications.",
+      "Managed connection lifecycle with AWS API Gateway (connect/disconnect events).",
+      "Stored WebSocket connection IDs in DynamoDB using TTL for scalable session tracking.",
+      "Built HTTP API endpoints for creating notifications with validation and DynamoDB persistence.",
+      "Designed serverless architecture using AWS SAM for cost-efficiency and reliability.",
+      "Developed a client-side testing UI with HTML/CSS/JS to manage sessions and display logs."
+    ],
+    tech: [
+      "Go",
+      "AWS Lambda",
+      "API Gateway (WebSocket & HTTP)",
+      "DynamoDB",
+      "AWS SAM",
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ]
   },
   {
     id: "p2",
-    title: "Java 8 → Java 17 Migration",
-    desc: "Refactored legacy codebase & upgraded runtime + build chain.",
-    details:
-      "Replaced deprecated libs, updated build scripts and fixed reflection usages.",
-    tech: ["Java 17", "Maven"],
+    title: "Java Application Migration to Java 17",
+    summary:
+      "Complete migration and modernization of a legacy Windows-based Java 8 application to Java 17.",
+    responsibilities: [
+      "Performed R&D and migrated a legacy Java 8 system to Java 17 with full dependency compatibility.",
+      "Addressed deprecated APIs, Windows-specific integrations, and breaking changes.",
+      "Utilized new Java 17 features (sealed classes, pattern matching, enhanced switch).",
+      "Refactored code for performance, maintainability, and long-term security.",
+      "Executed unit, integration, and Windows environment compatibility testing.",
+      "Upgraded build configs (Maven/Gradle) and optimized JVM performance.",
+      "Documented migration steps, solutions, and best practices."
+    ],
+    tech: ["Java 17", "Java 8", "Maven", "Gradle", "Windows Runtime", "Unit Testing"]
   },
   {
     id: "p3",
     title: "Secure Document Access via Email",
-    desc: "Cognito login → presigned S3 URLs for secure document retrieval.",
-    details:
-      "Implemented role-based access with presigned URLs and short TTLs for links.",
-    tech: ["Go", "Cognito", "S3"],
-  },
-  {
-    id: "p4",
-    title: "Automated PDF Statement Generator",
-    desc: "Financial statement PDFs via gofpdf.",
-    details:
-      "Designed templates and wrote tooling to batch generate landlord statements.",
-    tech: ["Go", "gofpdf"],
-  },
+    summary:
+      "A secure backend system enabling document access via AWS Cognito authentication and presigned S3 URLs.",
+    responsibilities: [
+      "Built backend APIs with AWS Cognito for role-based authentication.",
+      "Generated dynamic presigned S3 URLs for secure document access.",
+      "Developed APIs to process email login codes and deliver access in real time.",
+      "Implemented role-based authorization and session handling.",
+      "Collaborated with frontend to create seamless login and access experience.",
+      "Ensured secure, streamlined document delivery workflows."
+    ],
+    tech: ["Go", "AWS Cognito", "AWS S3", "REST APIs", "Postman"]
+  }
 ];
 
 export default function Projects() {
-  const [open, setOpen] = useState(null);
-
   return (
     <section className="terminal page-content">
-      <div className="prompt">$ projects --list</div>
+      <div className="prompt">$ projects</div>
 
-      <div className="project-grid">
+      <div className="project-full-list">
         {PROJECTS.map((p) => (
-          <article
-            key={p.id}
-            className={`project-card ${open === p.id ? "expanded" : ""}`}
-            onClick={() => setOpen(open === p.id ? null : p.id)}
-          >
-            <h4>{p.title}</h4>
-            <p className="desc">{p.desc}</p>
-            <div className="tech">{p.tech.join(" • ")}</div>
-            {open === p.id && (
-              <div className="details">
-                <p>{p.details}</p>
-                <button
-                  className="small-btn"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setOpen(null);
-                  }}
-                >
-                  close
-                </button>
-              </div>
-            )}
+          <article key={p.id} className="project-box">
+            <h2 className="project-title">{p.title}</h2>
+
+            <p className="project-summary">{p.summary}</p>
+
+            <h3 className="project-subheading">Responsibilities</h3>
+            <ul className="project-list">
+              {p.responsibilities.map((r, i) => (
+                <li key={i}>{r}</li>
+              ))}
+            </ul>
+
+            <h3 className="project-subheading">Tech Stack</h3>
+            <div className="tech-chips">
+              {p.tech.map((t, i) => (
+                <span key={i} className="chip">
+                  {t}
+                </span>
+              ))}
+            </div>
           </article>
         ))}
       </div>
