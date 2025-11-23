@@ -1,0 +1,265 @@
+/* ============================================
+   MacOS Terminal — PRO THEME (Black & White)
+   Clean • Minimal • Exact Pro Terminal Look
+   ============================================ */
+
+:root {
+  --bg: #000000;       /* Pure black */
+  --fg: #ffffff;       /* Pure white text */
+  --muted: #cccccc;    /* Light grey muted text */
+  --cursor: #ffcc00;   /* Yellow Mac cursor */
+  --border: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.15);
+}
+
+/* GLOBAL RESET */
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: var(--bg) !important;
+  color: var(--fg);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+/* APP LAYOUT */
+.app-root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: var(--bg);
+}
+
+/* NAVBAR */
+.top-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 40px;   /* more padding = bigger navbar */
+  font-size: 1.05rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-links a {
+  margin-left: 24px;   /* spaced out */
+  font-size: 1rem;
+}
+
+.brand {
+  color: var(--fg);
+  font-weight: 600;
+}
+.nav-links a {
+  color: var(--fg);
+  margin-left: 14px;
+  text-decoration: none;
+  opacity: 0.9;
+}
+.nav-links a:hover {
+  opacity: 1;
+}
+
+/* MAIN WRAPPER */
+.main-shell {
+  flex: 1;
+  padding: 28px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* TERMINAL BOX */
+.terminal {
+  width: 100%;
+  max-width: 1100px;
+  padding: 20px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--fg);
+}
+
+/* PROMPT */
+.prompt {
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+
+/* CURSOR */
+.cursor {
+  display: inline-block;
+  margin-left: 6px;
+  color: var(--cursor);
+  font-weight: bold;
+}
+.cursor.blink {
+  animation: blink 1s steps(2, start) infinite;
+}
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+/* SECTIONS */
+.section {
+  margin-top: 18px;
+}
+
+/* SKILL CHIPS */
+.chips span {
+  padding: 6px 10px;
+  margin: 4px 6px 0 0;
+  border: 1px solid var(--border-strong);
+  border-radius: 4px;
+  display: inline-block;
+  color: var(--fg);
+}
+
+/* PROJECTS */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 18px;
+  margin-top: 12px;
+}
+.project-card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 16px;
+  cursor: pointer;
+  transition: 0.15s ease-in-out;
+}
+.project-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.08);
+}
+.project-card.expanded {
+  grid-column: 1 / -1;
+  border-color: var(--border-strong);
+}
+.project-card .tech {
+  color: var(--muted);
+  font-size: 13px;
+}
+.project-card .details {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--border-strong);
+}
+
+/* BUTTONS */
+.small-btn {
+  background: transparent;
+  color: var(--fg);
+  border: 1px solid var(--border-strong);
+  padding: 6px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.small-btn:hover {
+  background: rgba(255, 255, 255, 0.07);
+}
+
+/* FOOTER */
+.footer {
+  padding: 12px 20px;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+}
+
+/* CONTACT FORM */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.contact-form input,
+.contact-form textarea {
+  background: transparent;
+  color: var(--fg);
+  border: 1px solid var(--border-strong);
+  padding: 10px;
+  border-radius: 4px;
+}
+.contact-form button {
+  color: var(--fg);
+  background: transparent;
+  border: 1px solid var(--border-strong);
+  padding: 8px 12px;
+  border-radius: 4px;
+}
+.contact-form button:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* TERMINAL COMMAND-LINE */
+.command-box {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+}
+.cmd-prefix {
+  margin-right: 8px;
+  color: var(--fg);
+}
+.cmd-input {
+  width: 70%;
+  background: transparent;
+  color: var(--fg);
+  border: none;
+  outline: none;
+  font-family: inherit;
+}
+.terminal-line {
+  margin: 6px 0;
+  color: var(--fg);
+}
+
+/* COMMAND PALETTE */
+.palette-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 15vh;
+  z-index: 100;
+}
+.palette {
+  background: #000;
+  padding: 12px;
+  border-radius: 4px;
+  border: 1px solid var(--border-strong);
+  min-width: 380px;
+}
+.palette input {
+  width: 100%;
+  padding: 10px;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--fg);
+}
+.palette li {
+  padding: 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  color: var(--fg);
+}
+.palette li:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* RESPONSIVE */
+@media(max-width: 640px) {
+  .nav-links { display: none; }
+  .project-grid { grid-template-columns: 1fr; }
+  .cmd-input { width: 60%; }
+}
+
+/* LINKS */
+.download-link {
+  color: var(--fg);
+  text-decoration: underline;
+}
