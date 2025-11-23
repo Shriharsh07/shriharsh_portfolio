@@ -8,8 +8,6 @@ export default function CommandLine({ onThemeChange }) {
   const navigate = useNavigate();
   const inputRef = useRef();
 
-  const RESUME_PATH = "/mnt/data/Shriharsh Pattar (CV).pdf";
-
   const push = (line) => setHistory((h) => [...h, line]);
 
   const helpCommands = [
