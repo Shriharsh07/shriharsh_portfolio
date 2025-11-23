@@ -5,9 +5,7 @@ export default function AudioEngine() {
 
   // Preload audio
   const keypress = new Audio("/sounds/key-press.mp3");
-  const typeSound = new Audio("/sounds/typewriter.mp3");
   keypress.volume = 0.25;
-  typeSound.volume = 0.2;
 
   useEffect(() => {
     // Enable audio after first interaction
@@ -39,17 +37,10 @@ export default function AudioEngine() {
       }
     };
 
-    const handleType = () => {
-      typeSound.currentTime = 0;
-      typeSound.play();
-    };
-
     window.addEventListener("keydown", handleKey);
-    document.addEventListener("typing-sound", handleType);
 
     return () => {
       window.removeEventListener("keydown", handleKey);
-      document.removeEventListener("typing-sound", handleType);
     };
   }, [audioEnabled]);
 
