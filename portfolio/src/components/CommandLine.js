@@ -12,6 +12,16 @@ export default function CommandLine({ onThemeChange }) {
 
   const push = (line) => setHistory((h) => [...h, line]);
 
+  const helpCommands = [
+    "help",
+    "skills",
+    "projects",
+    "about",
+    "theme [terminal|crt|light]",
+    "clear",
+    "social",
+  ]
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const cmd = value.trim();
@@ -22,36 +32,38 @@ export default function CommandLine({ onThemeChange }) {
     const parts = cmd.split(" ");
     const base = parts[0].toLowerCase();
 
-    if (base === "help") {
-      push(
-        "Available commands: help, skills, projects, about, theme [terminal|crt|light], clear, social, download, matrix"
-      );
-    } else if (base === "skills") {
-      Skills.forEach((s) => push(s));
-    } else if (base === "projects") {
-      push("Opening projects page...");
-      navigate("/projects");
-    } else if (base === "about") {
-      push("A passionate engineer building serverless & cloud apps.");
-    } else if (base === "theme") {
-      const t = parts[1] || "terminal";
-      document.documentElement.setAttribute("data-theme", t);
-      push(`Theme set to ${t}`);
-    } else if (base === "clear") {
-      setHistory([]);
-    } else if (base === "social") {
-      push("LinkedIn: https://linkedin.com/in/shriharsh-pattar");
-      push("GitHub: https://github.com/yourprofile");
-    } else if (base === "download") {
-      push("Preparing resume...");
-      // open the resume path in new tab
-      window.open(RESUME_PATH, "_blank");
-    } else if (base === "matrix") {
-      push("Launching matrix rain... (press ESC to stop)");
-      // simple full-screen matrix effect toggle
-      document.body.classList.toggle("matrix");
-    } else {
-      push(`Command not found: ${cmd}`);
+    switch (base) {
+
+        case "help":
+            helpCommands.forEach((c) => push(c));
+            break;
+        case "skills":
+            Skills.forEach((s) => push(s));
+            break;
+        case "projects":
+            push("Opening projects page...");
+            navigate("/projects");
+            break;
+        case "about":
+            push("A passionate engineer building serverless & cloud apps.");
+            break;
+        case "theme":
+            const t = parts[1] || "terminal";
+            document.documentElement.setAttribute("data-theme", t);
+            push(`Theme set to ${t}`);
+            onThemeChange && onThemeChange(t);
+            break;
+        case "clear":
+            setHistory([]);
+            break;
+        case "social":
+            push("LinkedIn: https://linkedin.com/in/shriharsh-pattar");
+            push("GitHub: https://github.com/Shriharsh07");
+            break;
+
+        default:
+            push(`Command not found: ${cmd}`);
+            break;
     }
 
     setValue("");
