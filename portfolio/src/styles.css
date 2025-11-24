@@ -660,3 +660,28 @@ body,
     text-align: center;
   }
 }
+
+.project-box {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 6px;
+  background: #0a0a0a;
+  transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Highlighted project */
+.project-box.highlight {
+  border: 1px solid #ffcc00 !important;
+  box-shadow: 0 0 12px rgba(255, 204, 0, 0.4);
+}
+
+/* Slowly fade out highlight after 4 seconds */
+.project-box.highlight {
+  animation: fadeGlow 4s ease forwards;
+}
+
+@keyframes fadeGlow {
+  0%   { box-shadow: 0 0 12px rgba(255, 204, 0, 0.4); }
+  100% { box-shadow: none; border-color: rgba(255, 255, 255, 0.1); }
+}

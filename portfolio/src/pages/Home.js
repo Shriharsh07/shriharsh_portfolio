@@ -77,7 +77,7 @@ export default function Home() {
                   <div className="featured-actions">
                     <button
                       className="small-btn"
-                      onClick={() => navigate("/projects")}
+                      onClick={() => navigate("/projects", { state: { highlight: p.id } })}
                     >
                       View Details
                     </button>

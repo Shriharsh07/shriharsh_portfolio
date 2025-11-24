@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 const PROJECTS = [
   {
@@ -13,7 +14,7 @@ const PROJECTS = [
       "Stored WebSocket connection IDs in DynamoDB using TTL for scalable session tracking.",
       "Built HTTP API endpoints for creating notifications with validation and DynamoDB persistence.",
       "Designed serverless architecture using AWS SAM for cost-efficiency and reliability.",
-      "Developed a client-side testing UI with HTML/CSS/JS to manage sessions and display logs."
+      "Developed a client-side testing UI with HTML/CSS/JS to manage sessions and display logs.",
     ],
     tech: [
       "Go",
@@ -23,8 +24,8 @@ const PROJECTS = [
       "AWS SAM",
       "HTML",
       "CSS",
-      "JavaScript"
-    ]
+      "JavaScript",
+    ],
   },
   {
     id: "p2",
@@ -38,9 +39,16 @@ const PROJECTS = [
       "Refactored code for performance, maintainability, and long-term security.",
       "Executed unit, integration, and Windows environment compatibility testing.",
       "Upgraded build configs (Maven/Gradle) and optimized JVM performance.",
-      "Documented migration steps, solutions, and best practices."
+      "Documented migration steps, solutions, and best practices.",
     ],
-    tech: ["Java 17", "Java 8", "Maven", "Gradle", "Windows Runtime", "Unit Testing"]
+    tech: [
+      "Java 17",
+      "Java 8",
+      "Maven",
+      "Gradle",
+      "Windows Runtime",
+      "Unit Testing",
+    ],
   },
   {
     id: "p3",
@@ -53,20 +61,43 @@ const PROJECTS = [
       "Developed APIs to process email login codes and deliver access in real time.",
       "Implemented role-based authorization and session handling.",
       "Collaborated with frontend to create seamless login and access experience.",
-      "Ensured secure, streamlined document delivery workflows."
+      "Ensured secure, streamlined document delivery workflows.",
     ],
-    tech: ["Go", "AWS Cognito", "AWS S3", "REST APIs", "Postman"]
-  }
+    tech: ["Go", "AWS Cognito", "AWS S3", "REST APIs", "Postman"],
+  },
 ];
 
 export default function Projects() {
+  const location = useLocation();
+  const highlightId = location.state?.highlight;
+
+  const [active, setActive] = useState(null);
+
+  useEffect(() => {
+    if (highlightId) {
+      setActive(highlightId);
+
+      // Auto-scroll smoothly
+      setTimeout(() => {
+        const el = document.getElementById(highlightId);
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+      }, 200);
+    }
+  }, [highlightId]);
+
   return (
     <section className="terminal page-content">
       <div className="prompt">$ projects</div>
 
       <div className="project-full-list">
         {PROJECTS.map((p) => (
-          <article key={p.id} className="project-box">
+          <article
+            id={p.id}
+            key={p.id}
+            className={`project-box ${active === p.id ? "highlight" : ""}`}
+          >
             <h2 className="project-title">{p.title}</h2>
 
             <p className="project-summary">{p.summary}</p>
