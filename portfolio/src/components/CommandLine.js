@@ -11,14 +11,11 @@ export default function CommandLine({ onThemeChange }) {
   const push = (line) => setHistory((h) => [...h, line]);
 
   const helpCommands = [
-    "help",
-    "skills",
     "projects",
-    "about",
     "theme [terminal|crt|light]",
     "clear",
     "social",
-  ]
+  ];
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -31,37 +28,30 @@ export default function CommandLine({ onThemeChange }) {
     const base = parts[0].toLowerCase();
 
     switch (base) {
+      case "help":
+        helpCommands.forEach((c) => push(`- ${c}`));
+        break;
+      case "projects":
+        push("Opening projects page...");
+        navigate("/projects");
+        break;
+      case "theme":
+        const t = parts[1] || "terminal";
+        document.documentElement.setAttribute("data-theme", t);
+        push(`Theme set to ${t}`);
+        onThemeChange && onThemeChange(t);
+        break;
+      case "clear":
+        setHistory([]);
+        break;
+      case "social":
+        push("LinkedIn: https://linkedin.com/in/shriharsh-pattar");
+        push("GitHub: https://github.com/Shriharsh07");
+        break;
 
-        case "help":
-            helpCommands.forEach((c) => push(c));
-            break;
-        case "skills":
-            Skills.forEach((s) => push(s));
-            break;
-        case "projects":
-            push("Opening projects page...");
-            navigate("/projects");
-            break;
-        case "about":
-            push("A passionate engineer building serverless & cloud apps.");
-            break;
-        case "theme":
-            const t = parts[1] || "terminal";
-            document.documentElement.setAttribute("data-theme", t);
-            push(`Theme set to ${t}`);
-            onThemeChange && onThemeChange(t);
-            break;
-        case "clear":
-            setHistory([]);
-            break;
-        case "social":
-            push("LinkedIn: https://linkedin.com/in/shriharsh-pattar");
-            push("GitHub: https://github.com/Shriharsh07");
-            break;
-
-        default:
-            push(`Command not found: ${cmd}`);
-            break;
+      default:
+        push(`Command not found: ${cmd}`);
+        break;
     }
 
     setValue("");

@@ -1,14 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import CommandLine from "../components/CommandLine";
 
-const INFO_LINES = [
-  "whoami: Shriharsh Pattar",
-  "role: Software Engineer",
-  "location: India",
-  "current_tech: Go, AWS Lambda, Amazon DynamoDB, MySQL",
-  "contact: shriharshdpattar@gmail.com",
-];
-
 export const Skills = [
   "Golang",
   "AWS Lambda",
@@ -20,9 +12,9 @@ export const Skills = [
   "MongoDB",
 ];
 
-const headline = `Enthusiastic Software Engineer with a strong foundation in programming 
-                  and a mindset for continuous growth. I enjoy building practical solutions, 
-                  learning new technologies, and pushing myself beyond comfort zones. `;
+const headline = `Enthusiastic Software Engineer with a strong foundation in programming and a mindset for continuous growth. 
+                  I enjoy building practical solutions, learning new technologies, and pushing myself beyond comfort zones. 
+                  Passionate about starting my career in an environment that encourages learning, teamwork, and innovation. `;
 
 const FEATURED = [
   {
@@ -49,16 +41,8 @@ export default function Home() {
       {/* HERO — replaced typing animation per your choice (B) */}
       <div className="hero">
         <h1 className="hero-title">Hi, I’m Shriharsh.</h1>
-        <p className="hero-sub">Backend Engineer — Go | AWS | Java</p>
+        <p className="hero-sub">Backend Engineer — Go | AWS | MySQL</p>
         <p className="hero-desc">{headline}</p>
-        <div className="hero-cta">
-          <button className="small-btn" onClick={() => navigate("/projects")}>
-            View Projects
-          </button>
-          <button className="small-btn" onClick={() => navigate("/resume")}>
-            View Resume
-          </button>
-        </div>
       </div>
 
       {/* Featured Projects */}
