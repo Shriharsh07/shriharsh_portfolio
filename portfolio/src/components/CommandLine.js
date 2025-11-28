@@ -48,6 +48,10 @@ export default function CommandLine({ onThemeChange }) {
         push("LinkedIn: https://linkedin.com/in/shriharsh-pattar");
         push("GitHub: https://github.com/Shriharsh07");
         break;
+      case "certifications":
+        push("Opening certifications page...");
+        navigate("/certifications");
+        break;
 
       default:
         push(`Command not found: ${cmd}`);

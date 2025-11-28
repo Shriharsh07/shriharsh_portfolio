@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import Projects from "./pages/Projects";
 import Resume from "./pages/Resume";
 import Contact from "./pages/Contact";
+import Certifications from "./pages/Certifications";
 import CommandPalette from "./components/CommandPalette";
 import AudioEngine from "./components/AudioEngine";
 import Loader from "./components/Loader";
@@ -82,6 +83,7 @@ export default function App() {
             <Link to="/">home</Link>
             <Link to="/projects">projects</Link>
             <Link to="/resume">resume</Link>
+            <Link to="/certifications">certifications</Link>
             <Link to="/contact">contact</Link>
           </div>
 
@@ -167,6 +169,7 @@ export default function App() {
             <Route path="/projects" element={<Projects />} />
             <Route path="/resume" element={<Resume />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/certifications" element={<Certifications />} />
           </Routes>
         </main>
 
